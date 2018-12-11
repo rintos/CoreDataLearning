@@ -38,10 +38,17 @@ class ViewController: UIViewController {
         
         //Ordernar de A-Z
         let ordenacaoAZ = NSSortDescriptor(key: "nome", ascending: false)
-        let ordenacaoZA = NSSortDescriptor(key: "preco", ascending: true)
+        //let ordenacaoZA = NSSortDescriptor(key: "preco", ascending: true)
+        
+        //aplicar filtro em item
+       // let predicate = NSPredicate(format: "nome == %@", "Ipad")
+        let predicate = NSPredicate(format: "nome contains [c] %@", "ip")
+        
         
         //aplicar filtro criados a requisicao
-        resultProduto.sortDescriptors = [ordenacaoAZ,ordenacaoZA]
+        resultProduto.sortDescriptors = [ordenacaoAZ]
+        resultProduto.predicate = predicate
+        
         
         
         do {
