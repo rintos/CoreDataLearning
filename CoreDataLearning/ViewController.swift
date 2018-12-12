@@ -41,11 +41,11 @@ class ViewController: UIViewController {
         //let ordenacaoZA = NSSortDescriptor(key: "preco", ascending: true)
         
         //aplicar filtro em item
-        let predicate = NSPredicate(format: "nome == %@", "Ipad")
+        //let predicate = NSPredicate(format: "nome == %@", "Ipad")
        // let predicate = NSPredicate(format: "nome contains [c] %@", "ip")
         
         //let filtroNome = NSPredicate(format: "nome contains [c] %@", "p")
-        //let filtroPreco = NSPredicate(format: "preco >= %@", "100.2")
+        let filtroPreco = NSPredicate(format: "preco <= %@", "1000.2")
         
        // let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroNome, filtroPreco])
        // let combinacaoFiltro = NSCompoundPredicate(orPredicateWithSubpredicates: [filtroNome, filtroPreco])
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         
         //aplicar filtro criados a requisicao
         resultProduto.sortDescriptors = [ordenacaoAZ]
-        resultProduto.predicate = predicate
+        resultProduto.predicate = filtroPreco
         
         
         
@@ -69,6 +69,16 @@ class ViewController: UIViewController {
                                 
                                 print("o nome eh \(nome) a sua quantidade eh \(quantidade) o preco eh: \(preco)" )
                                 
+                                //remover produto
+                                context.delete(produto)
+                                do {
+                                    try context.save()
+                                    print("removido com sucesso o produto")
+                                } catch{
+                                    print("erro ao remover produto")
+                                }
+                                
+                                //atualizar produto
                                 /*produto.setValue(20, forKey: "quantidade")
                                 produto.setValue(5000.2, forKey: "preco")
                                 
