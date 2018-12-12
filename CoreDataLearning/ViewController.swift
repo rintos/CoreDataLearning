@@ -41,19 +41,19 @@ class ViewController: UIViewController {
         //let ordenacaoZA = NSSortDescriptor(key: "preco", ascending: true)
         
         //aplicar filtro em item
-       // let predicate = NSPredicate(format: "nome == %@", "Ipad")
+        let predicate = NSPredicate(format: "nome == %@", "Ipad")
        // let predicate = NSPredicate(format: "nome contains [c] %@", "ip")
         
-        let filtroNome = NSPredicate(format: "nome contains [c] %@", "p")
-        let filtroPreco = NSPredicate(format: "preco >= %@", "100.2")
+        //let filtroNome = NSPredicate(format: "nome contains [c] %@", "p")
+        //let filtroPreco = NSPredicate(format: "preco >= %@", "100.2")
         
        // let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroNome, filtroPreco])
-        let combinacaoFiltro = NSCompoundPredicate(orPredicateWithSubpredicates: [filtroNome, filtroPreco])
+       // let combinacaoFiltro = NSCompoundPredicate(orPredicateWithSubpredicates: [filtroNome, filtroPreco])
 
         
         //aplicar filtro criados a requisicao
         resultProduto.sortDescriptors = [ordenacaoAZ]
-        resultProduto.predicate = combinacaoFiltro
+        resultProduto.predicate = predicate
         
         
         
@@ -68,6 +68,16 @@ class ViewController: UIViewController {
                             if let preco = produto.value(forKey: "preco") {
                                 
                                 print("o nome eh \(nome) a sua quantidade eh \(quantidade) o preco eh: \(preco)" )
+                                
+                                /*produto.setValue(20, forKey: "quantidade")
+                                produto.setValue(5000.2, forKey: "preco")
+                                
+                                do {
+                                    try context.save()
+                                    print("dados atualizados")
+                                } catch{
+                                    print("nao pode atualizar os dados")
+                                }*/
                             }
                         }
                     }
