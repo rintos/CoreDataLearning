@@ -42,12 +42,18 @@ class ViewController: UIViewController {
         
         //aplicar filtro em item
        // let predicate = NSPredicate(format: "nome == %@", "Ipad")
-        let predicate = NSPredicate(format: "nome contains [c] %@", "ip")
+       // let predicate = NSPredicate(format: "nome contains [c] %@", "ip")
         
+        let filtroNome = NSPredicate(format: "nome contains [c] %@", "p")
+        let filtroPreco = NSPredicate(format: "preco >= %@", "100.2")
+        
+       // let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroNome, filtroPreco])
+        let combinacaoFiltro = NSCompoundPredicate(orPredicateWithSubpredicates: [filtroNome, filtroPreco])
+
         
         //aplicar filtro criados a requisicao
         resultProduto.sortDescriptors = [ordenacaoAZ]
-        resultProduto.predicate = predicate
+        resultProduto.predicate = combinacaoFiltro
         
         
         
